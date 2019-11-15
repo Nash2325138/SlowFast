@@ -5,7 +5,7 @@
 
 import torch
 
-from slowfast.models.video_model_builder import ResNetModel, SlowFastModel
+from ..models.video_model_builder import ResNetModel, SlowFastModel
 
 # Supported model types
 _MODEL_TYPES = {

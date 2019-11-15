@@ -9,7 +9,7 @@ import logging
 import sys
 import simplejson
 
-import slowfast.utils.distributed as du
+from ..utils import distributed as du
 
 
 def _suppress_print():
