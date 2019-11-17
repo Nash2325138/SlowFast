@@ -155,6 +155,7 @@ def load_checkpoint(
     optimizer=None,
     inflation=False,
     convert_from_caffe2=False,
+    verbose=1
 ):
     """
     Load the checkpoint from the given file. If inflation is True, inflate the
@@ -195,14 +196,15 @@ def load_checkpoint(
                     converted_key,
                     tuple(ms.state_dict()[converted_key].shape),
                 )
-                logger.info(
-                    "{}: {} => {}: {}".format(
-                        key,
-                        caffe2_checkpoint["blobs"][key].shape,
-                        converted_key,
-                        tuple(ms.state_dict()[converted_key].shape),
+                if verbose >= 1:
+                    logger.info(
+                        "{}: {} => {}: {}".format(
+                            key,
+                            caffe2_checkpoint["blobs"][key].shape,
+                            converted_key,
+                            tuple(ms.state_dict()[converted_key].shape),
+                        )
                     )
-                )
             else:
                 assert any(
                     prefix in key for prefix in ["momentum", "lr", "model_iter"]
